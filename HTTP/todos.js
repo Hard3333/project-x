@@ -1,4 +1,3 @@
-const data = require('../input/input');
 const rp = require('request-promise');
 
 let arr = [];

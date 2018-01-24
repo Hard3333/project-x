@@ -1,5 +1,4 @@
 const fs = require("mz/fs")
-// const http = require("../HTTP/sendObject")
 const post = require("./post")
 const todo = require("./todo")
 
@@ -8,7 +7,7 @@ async function main(username, type, entities) {
         let id = ""
         let intid = 0
 
-        await createFolder()
+        // await createFolder()
 
         const files = await fs.readdir("../")
         let filenames = files.map(x => x.split(".")).map(x => x[0])
