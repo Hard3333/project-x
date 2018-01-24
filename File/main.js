@@ -1,17 +1,19 @@
-(async () => {
+const fs = require("mz/fs", "utf8")
+const http = require("../HTTP/sendObject")
+const input = require("../input/input")
+const post = require("./post")
+const todo = require("./todo")
+
+async function main() {
     try {
-        const fs = require("mz/fs", "utf8")
-        const input = require("../input/input")
-        const post = require("./post")
-        const todo = require("./todo")
         const username = input.username
         const type = (input.type === 1) ? "post" : "todo"
         let id = ""
         let intid = 0
 
         createFolder()
+
         const files = await fs.readdir("../")
-        console.log(files)
         let filenames = files.map(x => x.split(".")).map(x => x[0])
         let names = filenames.map(x => x.split("-")).map(x => x[0])
         for (const n of names) {
@@ -23,8 +25,8 @@
             id = `-${intid}`
 
         const write = (type === "post") ?
-            await fs.writeFile("../" + username + id + ".txt", post.getPost(), "utf8") :
-            await fs.writeFile("../" + username + id + ".txt", todo.getTodo(), "utf8")
+            await fs.writeFile("../" + username + id + ".txt", post.getPost(http.Array), "utf8") :
+            await fs.writeFile("../" + username + id + ".txt", todo.getTodo(http.Array), "utf8")
 
 
         function createFolder() {
@@ -35,8 +37,11 @@
             }
             return await fs.mkdir("../Result_Folder")
         }
-
     } catch (err) {
         throw err
     }
-})()
+}
+
+module.exports = {
+    main
+}
