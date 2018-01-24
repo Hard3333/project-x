@@ -1,0 +1,1 @@
+Marci(név, post vagy todo, tömb[json objectek{},...])  -> Bende
