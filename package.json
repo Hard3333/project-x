@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/joomartin/project-x#readme",
   "dependencies": {
+<<<<<<< HEAD
     "request-promise": "^4.2.2"
+=======
+    "mz": "^2.7.0"
+>>>>>>> de9e825ccc492127e39302337c91cafbcc7fd735
   }
 }
