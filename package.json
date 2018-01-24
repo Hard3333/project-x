@@ -18,6 +18,8 @@
   "homepage": "https://github.com/joomartin/project-x#readme",
   "keywords": [],
   "dependencies": {
-    "readline-sync": "^1.4.7"
+    "readline-sync": "^1.4.7",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   }
 }
