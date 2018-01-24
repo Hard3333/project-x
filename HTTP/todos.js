@@ -1,5 +1,5 @@
 const data = require('./input/input');
-const id = data.prompt();
+const id = data.findUserId();
 const rp = require('request-promise');
 
 let arr = [];
