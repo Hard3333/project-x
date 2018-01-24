@@ -1,6 +1,6 @@
 const todos = require('./todos')
 const post = require('./posts')
-const input = require('./input/input')
+const input = require('../input/input')
 
 const todosreadytosend = todos.requestData()
 const postsreadytosend = post.requestData()

@@ -1,4 +1,4 @@
-const data = require('./input/input');
+const data = require('../input/input');
 const id = data.prompt();
 const rp = require('request-promise');
 

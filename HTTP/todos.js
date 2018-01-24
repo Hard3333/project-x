@@ -1,10 +1,9 @@
-const data = require('./input/input');
-const id = data.findUserId();
+const data = require('../input/input');
 const rp = require('request-promise');
 
 let arr = [];
 
-async function requestData() {
+async function requestData(id) {
     var options = {         //Object amibe vannak a request beállitasai
         uri: 'https://jsonplaceholder.typicode.com/todos', //URL
         json: true //Ezzel átkonvertálja a kapott adatokat automatikusan JSON-be

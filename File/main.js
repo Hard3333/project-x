@@ -1,13 +1,10 @@
-const fs = require("mz/fs", "utf8")
+const fs = require("mz/fs")
 const http = require("../HTTP/sendObject")
-const input = require("../input/input")
 const post = require("./post")
 const todo = require("./todo")
 
-async function main() {
+async function main(username, type) {
     try {
-        const username = input.username
-        const type = (input.type === 1) ? "post" : "todo"
         let id = ""
         let intid = 0
 
@@ -29,7 +26,7 @@ async function main() {
             await fs.writeFile("../" + username + id + ".txt", todo.getTodo(http.Array), "utf8")
 
 
-        function createFolder() {
+        async function createFolder() {
             const folder = await fs.readdir("../")
             for (let f of folder) {
                 if (f === "Result_Folder")
