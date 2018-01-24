@@ -2,23 +2,26 @@ const todos = require('./todos')
 const post = require('./posts')
 const input = require('./input/input')
 
-const todosreadytosend = todos.returnData()
-const postsreadytosend = post.returnData()
+const todosreadytosend = todos.requestData()
+const postsreadytosend = post.requestData()
 const type = input.type
 const username = input.username
 
-
-if (type == 1) {
-        module.exports = {
-         type,
-         username,
-         postsreadytosend
+function Array() {
+    if (type == 1) {
+        return {
+            postsreadytosend
         }
+    }
+    else
+    {
+        return todosreadytosend
+    }
 }
-else {
-    module.exports = {
-        type,
-        username,
-        todosreadytosend
-       }
+
+module.exports = {
+    Array,
+    type,
+    username
 }
+
