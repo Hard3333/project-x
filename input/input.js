@@ -1,55 +1,75 @@
 
 const readline = require('readline-sync')
-
-function prompt() {
-    let answer ;
-    let username = '';
-    let type_ = 0;
+let answer ;
+async function getUserName(){
     do{
         answer = readline.question('add meg a felh. nevet: ');
-        if(!userNameCheck(answer))
+        if(!userNameCheck(answer,await allUserName()))
             console.log('nincs ilyen felhasznalo!');
-    }while(!userNameCheck(answer))
+        else{
+            return answer
+            //answer = username;
+        }
+    }while(!userNameCheck(answer,await allUserName()))
+}
+async function getType(){
+    let type = 0;
     while (true) {
         answer = readline.question('add meg az utastást(1: poszt, 2: teendo): ');
-
         if (answer == '1') {
-            type_ = 1;
-            break;
+            return 1;
         }
         else if (answer == '2') {
-            type_ = 1;
-            break;
+            return 2;
         }
         else
             console.log('Hibás utasitas!!!');
     }
-    let obj = {
-        type: type_,
-        UserName: username
-    }
-    console.log(obj);
-}
-function findByName(){
-    const rp = require('request-promise'); 
+} 
+async function allUserName(){
+    const rp = require('request-promise');
+    let arr = [];
     var options = {         //Object amibe vannak a request beállitasai 
         uri: 'https://jsonplaceholder.typicode.com/users', //URL 
         json: true //Ezzel átkonvertálja a kapott adatokat automatikusan JSON-be 
      }; 
-     (async function main(){ //asyn wrapper 
+
     
       const response = await rp(options) //Tanultuk nemtom elmagyarázni 
-      console.log(response) //Aki ezt a sort nem érti menjen haza! 
-    })();
-
+      //console.log(response) //Aki ezt a sort nem érti menjen haza!
+      for(r of response){
+        arr.push(r.username);
+    }
+    return arr;
 }
+async function findUserId(username){
+    const rp = require('request-promise');
+    let arr = [];
+    var options = {         //Object amibe vannak a request beállitasai 
+        uri: 'https://jsonplaceholder.typicode.com/users', //URL 
+        json: true //Ezzel átkonvertálja a kapott adatokat automatikusan JSON-be 
+     }; 
 
-function userNameCheck(name, allName = ['asd', 'asdasd', 'asdasdasd']) {
+    
+      const response = await rp(options) //Tanultuk nemtom elmagyarázni 
+      //console.log(response) //Aki ezt a sort nem érti menjen haza!
+      for(r in response){
+        if(username_ = r.username) 
+            return r;
+    }
+}
+function userNameCheck(name, allName) {
     for (current of allName) {
         if (name == current)
             return true;
     }
     return false;
 }
-findByName();
+module.exports={
+    getUserName,
+    getType,
+    findUserId
+}
+
+
 
