@@ -4,8 +4,8 @@ Majd megkérdezzük, hogy a posztjait, vagy a teendőit szeretnénk látni. Itt 
 A választásnak megfelelően lekérdezzük az entitásokat.
 
 Ezután a kapott adatokat kimentjük egy fileba, amit a felhasználónévvel mentünk el. Posztoknál a title + body, todoknál pedig a title -t.
-Ha todokat mentünk, akkor a file első sorában összegezzük, hogy mennyi elvégzett, és mennyi el nem végzett todo tartozik a userhez.
-Ha tartozik már a userhez file, akkor sorszámozzuk, pl.:
+Ha todokat mentünk, akkor a file lső sorában összegezzük, hogy mennyi elvégzett, és mennyi el nem végzett todo tartozik a userhez.
+Ha tartozik már a userheez file, akkor sorszámozzuk, pl.:
 
 username: paul
 
