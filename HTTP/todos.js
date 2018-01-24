@@ -10,14 +10,9 @@ async function requestData(id) {
     };
 
     const response = await rp(options) //Tanultuk nemtom elmagyarázni
-    console.log(response) //Aki ezt a sort nem érti menjen haza!
     for (let i = 0; i < response.length; i++) {
         if (response[i].userId == id) {
-            arr.push(
-                {
-                    title: response[i].title
-                }
-            );
+            arr.push(response[i]);
         }
     }
 

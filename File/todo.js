@@ -1,11 +1,11 @@
-function getTodo(todo) {
+function getTodo(todos) {
     let complete = 0
     let uncomplete = 0
     let titlestring = ""
     let string = ""
     let id = 1
 
-    for (let item of todo) {
+    for (let item of todos) {
         titlestring += ` ${id}. title: ${item.title}\r\n`
         id++
         (item.completed === true) ? complete++ : uncomplete++

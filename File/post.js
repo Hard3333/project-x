@@ -1,7 +1,7 @@
-function getPost(post) {
+function getPost(posts) {
     let string = ""
     let id = 1
-    for (let item of post) {
+    for (let item of posts) {
         string += `${id}.\r\ntitle: ${item.title}\r\nbody: ${item.body}\r\n\r\n`
         id++
     }

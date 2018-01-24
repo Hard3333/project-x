@@ -1,18 +1,18 @@
 
 const readline = require('readline-sync')
-let answer ;
-async function getUserName(){
-    do{
+let answer;
+async function getUserName() {
+    do {
         answer = readline.question('add meg a felh. nevet: ');
-        if(!userNameCheck(answer,await allUserName()))
+        if (!userNameCheck(answer, await allUserName()))
             console.log('nincs ilyen felhasznalo!');
-        else{
+        else {
             return answer
             //answer = username;
         }
-    }while(!userNameCheck(answer,await allUserName()))
+    } while (!userNameCheck(answer, await allUserName()))
 }
-async function getType(){
+async function getType() {
     let type = 0;
     while (true) {
         answer = readline.question('add meg az utastást(1: poszt, 2: teendo): ');
@@ -25,39 +25,40 @@ async function getType(){
         else
             console.log('Hibás utasitas!!!');
     }
-} 
-async function allUserName(){
+}
+async function allUserName() {
     const rp = require('request-promise');
     let arr = [];
     var options = {         //Object amibe vannak a request beállitasai 
         uri: 'https://jsonplaceholder.typicode.com/users', //URL 
         json: true //Ezzel átkonvertálja a kapott adatokat automatikusan JSON-be 
-     }; 
+    };
 
-    
-      const response = await rp(options) //Tanultuk nemtom elmagyarázni 
-      //console.log(response) //Aki ezt a sort nem érti menjen haza!
-      for(r of response){
+
+    const response = await rp(options) //Tanultuk nemtom elmagyarázni 
+    //console.log(response) //Aki ezt a sort nem érti menjen haza!
+    for (r of response) {
         arr.push(r.username);
     }
     return arr;
 }
-async function findUserId(username){
+async function findUserId(username) {
     const rp = require('request-promise');
     let arr = [];
     var options = {         //Object amibe vannak a request beállitasai 
         uri: 'https://jsonplaceholder.typicode.com/users', //URL 
         json: true //Ezzel átkonvertálja a kapott adatokat automatikusan JSON-be 
-     }; 
+    };
 
-    
-      const response = await rp(options) //Tanultuk nemtom elmagyarázni 
-      //console.log(response) //Aki ezt a sort nem érti menjen haza!
-      for(r in response){
-        if(username_ = r.username) 
-            return r;
+
+    const response = await rp(options) //Tanultuk nemtom elmagyarázni 
+    //console.log(response) //Aki ezt a sort nem érti menjen haza!
+    for (r of response) {
+        if (username = r.username)
+            return r.id;
     }
 }
+
 function userNameCheck(name, allName) {
     for (current of allName) {
         if (name == current)
@@ -65,7 +66,7 @@ function userNameCheck(name, allName) {
     }
     return false;
 }
-module.exports={
+module.exports = {
     getUserName,
     getType,
     findUserId

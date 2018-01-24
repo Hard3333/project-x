@@ -1,29 +1,19 @@
-const data = require('../input/input');
-const id = data.findUserId();
 const rp = require('request-promise');
 
-let arr = [];
-
-async function requestData()
-{
+async function requestData(id) {
+    let arr = [];
     var options = {
         uri: 'https://jsonplaceholder.typicode.com/posts',
         json: true
     };
-      const response = await rp(options) 
-       console.log(response) 
-       for (let i = 0; i < response.length; i++) {
-            if (response[i].userId == id) {
-                arr.push(
-                    {
-                        title: response[i].title,
-                        body: response[i].body
-                    }
-                );
-            }
-       }
+    const response = await rp(options);
+    for (let i = 0; i < response.length; i++) {
+        if (response[i].userId == id) {
+            arr.push(response[i]);
+        }
+    }
     return arr;
 }
-    module.exports = {
-        requestData
-    };
+module.exports = {
+    requestData
+};

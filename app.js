@@ -1,17 +1,25 @@
+const input = require('./input/input');
+const todos = require('./HTTP/todos');
+const posts = require('./HTTP/posts');
+const fileTodo = require('./File/main');
+
+const TYPES = {
+    '1': 'post',
+    '2': 'todo'
+};
+
 (async () => {
     try {
-        const input = require('./input/input');
-        const todos = require('./HTTP/todos');
-        const filseTodo = require('./File/main');
-
         const username = await input.getUserName();
-        const type = await input.getType();
+        const type = TYPES[(await input.getType())];
 
-        const id = input.findUserId(username);
+        const id = await input.findUserId(username);
 
-        const data = await todos.requestData(id);
+        const data = (type === 'todo')
+            ? await todos.requestData(id)
+            : await posts.requestData(id);
 
-        // await fileTodo.main(username, type === 1 ? 'post' : 'todo');        
+        await fileTodo.main(username, type, data);
     } catch (err) {
         throw err;
     }

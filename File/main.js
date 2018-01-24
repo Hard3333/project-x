@@ -1,14 +1,14 @@
 const fs = require("mz/fs")
-const http = require("../HTTP/sendObject")
+// const http = require("../HTTP/sendObject")
 const post = require("./post")
 const todo = require("./todo")
 
-async function main(username, type) {
+async function main(username, type, entities) {
     try {
         let id = ""
         let intid = 0
 
-        createFolder()
+        await createFolder()
 
         const files = await fs.readdir("../")
         let filenames = files.map(x => x.split(".")).map(x => x[0])
@@ -18,20 +18,20 @@ async function main(username, type) {
                 intid++
         }
 
-        if (intid === 0)
-            id = `-${intid}`
+        id = `-${intid}`;
 
-        const write = (type === "post") ?
-            await fs.writeFile("../" + username + id + ".txt", post.getPost(http.Array), "utf8") :
-            await fs.writeFile("../" + username + id + ".txt", todo.getTodo(http.Array), "utf8")
-
+        (type === "post") 
+            ? await fs.writeFile("../" + username + id + ".txt", post.getPost(entities), "utf8") 
+            : await fs.writeFile("../" + username + id + ".txt", todo.getTodo(entities), "utf8");
 
         async function createFolder() {
-            const folder = await fs.readdir("../")
+            const folder = await fs.readdir("../");
             for (let f of folder) {
-                if (f === "Result_Folder")
-                    return
+                if (f === "Result_Folder") {
+                    return;                    
+                }
             }
+
             return await fs.mkdir("../Result_Folder")
         }
     } catch (err) {
