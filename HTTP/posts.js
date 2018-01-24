@@ -24,10 +24,6 @@ async function requestData()
        }
     return arr;
 }
-
-function returnData()
-{
     module.exports = {
         requestData
     };
-}
