@@ -7,7 +7,7 @@ async function main(username, type, entities) {
         let id = ""
         let intid = 0
 
-        // await createFolder()
+        await createFolder()
 
         const files = await fs.readdir("../")
         let filenames = files.map(x => x.split(".")).map(x => x[0])
@@ -20,8 +20,8 @@ async function main(username, type, entities) {
         id = `-${intid}`;
 
         (type === "post") 
-            ? await fs.writeFile("../" + username + id + ".txt", post.getPost(entities), "utf8") 
-            : await fs.writeFile("../" + username + id + ".txt", todo.getTodo(entities), "utf8");
+            ? await fs.writeFile("../Result_Folder/" + username + id + ".txt", post.getPost(entities), "utf8") 
+            : await fs.writeFile("../Result_Folder/" + username + id + ".txt", todo.getTodo(entities), "utf8");
 
         async function createFolder() {
             const folder = await fs.readdir("../");

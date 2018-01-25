@@ -1,5 +1,6 @@
 
 const readline = require('readline-sync')
+
 let answer;
 async function getUserName() {
     do {
@@ -54,7 +55,7 @@ async function findUserId(username) {
     const response = await rp(options) //Tanultuk nemtom elmagyarázni 
     //console.log(response) //Aki ezt a sort nem érti menjen haza!
     for (r of response) {
-        if (username = r.username)
+        if (username == r.username)
             return r.id;
     }
 }

@@ -2,7 +2,6 @@ function getTodo(todos) {
     let complete = 0
     let uncomplete = 0
     let titlestring = ""
-    let string = ""
     let id = 1
 
     for (let item of todos) {
@@ -11,7 +10,7 @@ function getTodo(todos) {
         (item.completed === true) ? complete++ : uncomplete++
     }
 
-    return string = ` completed: ${complete}\r\n uncompleted: ${uncomplete}\r\n\r\n${titlestring}`
+    return ` completed: ${complete}\r\n uncompleted: ${uncomplete}\r\n\r\n${titlestring}`
 }
 
 // todo = [{
